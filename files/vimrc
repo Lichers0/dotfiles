@@ -5,12 +5,17 @@ set ttyfast
 set lazyredraw
 set relativenumber
 
+" let $FZF_DEFAULT_OPTS='--color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f,info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
+
 " let g:python_host_skip_check=1
 " let g:loaded_python3_provider=1
 
+" shape cursor in nvim. Kitty - Tmux - nvim
+" Обязательно использовать Kitty и переменная терминала должна быть
+" xterm-256color
+
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -19,7 +24,7 @@ set fileencoding=utf-8
 set encoding=utf-8
 set termencoding=utf-8
 
-set shell=/usr/bin/zsh
+set shell=/usr/bin/fish
 
 call plug#begin('~/.vim/plugged')
 
@@ -27,13 +32,41 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 autocmd VimEnter * ++nested colorscheme gruvbox
 
+Plug 'sjl/vitality.vim'
+
+" " FZF
+" if exists(':FZF')
+"   let g:fzf_colors = {}
+
+"   let g:fzf_colors.fg      = ['fg', 'GruvboxFg1']
+"   let g:fzf_colors.bg      = ['fg', 'GruvboxBg0']
+"   let g:fzf_colors.hl      = ['fg', 'GruvboxRed']
+"   let g:fzf_colors['fg+']  = ['fg', 'GruvboxGreen']
+"   let g:fzf_colors['bg+']  = ['fg', 'GruvboxBg1']
+"   let g:fzf_colors['hl+']  = ['fg', 'GruvboxRed']
+"   let g:fzf_colors.info    = ['fg', 'GruvboxOrange']
+"   let g:fzf_colors.border  = ['fg', 'GruvboxBg0']
+"   let g:fzf_colors.prompt  = ['fg', 'GruvboxAqua']
+"   let g:fzf_colors.pointer = ['fg', 'GruvboxOrange']
+"   let g:fzf_colors.marker  = ['fg', 'GruvboxYellow']
+"   let g:fzf_colors.spinner = ['fg', 'GruvboxGreen']
+"   let g:fzf_colors.header  = ['fg', 'GruvboxBlue']
+" endif
+
+" " GRUVBOX
+"     set bg=dark
+"     let g:gruvbox_contrast_dark='hard'
+"     let g:gruvbox_italic=1
+"     set termguicolors
+"     " colorscheme gruvbox
+
 " Dir Trees
 Plug 'preservim/nerdtree'
 Plug 'christoomey/vim-tmux-runner'
 
 " LANGUAGES
 " Ruby
-Plug 'codota/tabnine-vim'
+" Plug 'codota/tabnine-vim'
 " Run test
 " Plug 'kurko/smartest.vim'
 
@@ -148,19 +181,16 @@ let g:coc_global_extensions = [
       \ 'coc-prettier',
       \ 'coc-html',
       \ 'coc-lists',
-      \ 'coc-phpls',
       \ 'coc-sh',
       \ 'coc-css',
       \ 'coc-stylelint',
+      \ 'coc-sql',
       \ 'coc-vimlsp',
-      \ 'coc-go',
-      \ 'coc-elixir',
       \ 'coc-json',
       \ 'coc-eslint',
-      \ 'coc-python',
-      \ 'coc-java',
       \ 'coc-jest',
       \ 'coc-solargraph',
+      \ 'coc-tailwindcss',
       \ 'coc-yaml',
       \ 'coc-highlight',
       \ 'coc-snippets',
@@ -237,7 +267,7 @@ set cmdheight=2
 set signcolumn=no
 set scrolloff=3
 
-"silent! colorscheme jellybeans
+" silent! colorscheme gruvbox
 
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
