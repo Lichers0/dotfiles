@@ -2,6 +2,7 @@
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextPrefix": "# ",
   "solargraph.diagnostics": true,
+  "diagnostic.displayByAle": true,
   "diagnostic-languageserver.filetypes": {
     "php": "phpcs",
     "elixir": ["mix_credo"],

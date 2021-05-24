@@ -62,11 +62,14 @@ Plug 'sjl/vitality.vim'
 
 " Dir Trees
 Plug 'preservim/nerdtree'
-Plug 'christoomey/vim-tmux-runner'
+
+" Tmux for running tests
+" Plug 'christoomey/vim-tmux-runner'
+Plug 'kassio/neoterm'
+Plug 'preservim/vimux'
 
 " LANGUAGES
 " Ruby
-" Plug 'codota/tabnine-vim'
 " Run test
 " Plug 'kurko/smartest.vim'
 
@@ -116,22 +119,22 @@ Plug 'tpope/vim-projectionist'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
-Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
-Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+" Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+" Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'editorconfig/editorconfig-vim'
-Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
-Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
+" Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
+" Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
 
-Plug 'jwalton512/vim-blade', { 'for': 'php' }
-Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
-Plug 'noahfrederick/vim-composer', { 'for': 'php' }
-Plug 'noahfrederick/vim-laravel', { 'for': 'php' }
+" Plug 'jwalton512/vim-blade', { 'for': 'php' }
+" Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+" Plug 'noahfrederick/vim-composer', { 'for': 'php' }
+" Plug 'noahfrederick/vim-laravel', { 'for': 'php' }
 
 Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
-Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
-" Plug 'tpope/vim-ragtag'
+" Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
+Plug 'tpope/vim-ragtag'
 
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'eagletmt/ghcmod-vim'
@@ -139,9 +142,9 @@ Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }
-Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+" Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
 " Plug 'moll/vim-node'
-" Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'mattn/emmet-vim', { 'for': 'html' }
 
 " Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-easytags'
@@ -157,11 +160,11 @@ Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 " Plug 'michaeljsmith/vim-indent-object'
 
 " Clojure
-Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
-Plug 'tpope/vim-classpath', { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
+" Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+" Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
+" Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
 
 Plug 'kovisoft/slimv', { 'for': ['clojure', 'scheme', 'racket'] }
 Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
@@ -198,6 +201,9 @@ let g:coc_global_extensions = [
       \ 'coc-diagnostic',
       \ 'coc-yank',
       \]
+
+" Linting
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -264,7 +270,7 @@ set shiftwidth=2
 set updatetime=300
 set splitbelow
 set cmdheight=2
-set signcolumn=no
+set signcolumn=yes
 set scrolloff=3
 
 " silent! colorscheme gruvbox
@@ -324,7 +330,7 @@ nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
-let test#strategy = 'vtr'
+let test#strategy = 'vimux'
 
 " coc-yank
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
@@ -338,7 +344,7 @@ nnoremap ff :normal! gg=G``<CR>
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
 " find merge conflict markers
-nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+nmap <silent> <leader>fmc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <Leader>w :w<CR>
 " serch git files
@@ -537,3 +543,51 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 vmap <leader>y :w! /tmp/.vim/.vbuf<CR>
 nmap <leader>y :.w! /tmp/.vim/.vbuf<CR>
 nmap <leader>p :r /tmp/.vim/.vbuf<CR>
+
+" ALE
+let g:ale_disable_lsp = 1
+let g:ale_fix_on_save = 0
+
+"" Errors
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '=-'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+" let g:ale_set_highlights = 0
+
+"" Linting
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_ignore_lsp = 1
+
+let g:ale_ruby_rubocop_options = '-D'
+" let g:ale_ruby_rubocop_options = '-D -E --color'
+let g:ale_ruby_rubocop_auto_correct_all = 1
+
+let g:ale_linters = {
+      \ 'ruby': ['rubocop']
+      \ }
+
+let g:ale_fixers = {
+      \ 'ruby': ['remove_trailing_lines', 'trim_whitespace', 'rubocop'],
+      \ 'css': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier'],
+      \ 'scss': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier'],
+      \ 'javascript': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier', 'eslint'],
+      \ 'typescript': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier', 'eslint'],
+      \ 'html': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier'],
+      \ 'erb': ['remove_trailing_lines', 'trim_whitespace', 'htmlbeautifier'],
+      \ 'eruby': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier'],
+      \ '*': ['remove_trailing_lines', 'trim_whitespace']
+      \ }
+
+" nmap <silent> [a <Plug>(ale_previous_wrap)
+" nmap <silent> ]a <Plug>(ale_next_wrap)
+
+" nnoremap <Leader>ar :ALEFindReferences<CR>
+" nnoremap <Leader>as :ALESymbolSearch<CR>
+nnoremap <Leader>af :ALEFix<CR>
+nnoremap <Leader>al :ALELint<CR>
+
