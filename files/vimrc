@@ -26,11 +26,20 @@ set termencoding=utf-8
 
 set shell=/usr/bin/fish
 
+set background=dark
+" Выделение цветом кодов цветов
+" set termguicolors
+" colorscheme gruvbox-material
+
 call plug#begin('~/.vim/plugged')
 
 "Color schemes
-Plug 'morhetz/gruvbox'
-autocmd VimEnter * ++nested colorscheme gruvbox
+Plug 'nanotech/jellybeans.vim'
+" Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
+Plug 'sheerun/vim-polyglot'
+autocmd VimEnter * ++nested colorscheme gruvbox-material
+" autocmd VimEnter * ++nested colorscheme gruvbox
 
 Plug 'sjl/vitality.vim'
 
@@ -62,6 +71,18 @@ Plug 'sjl/vitality.vim'
 
 " Dir Trees
 Plug 'preservim/nerdtree'
+" Отражение в дереве изменений по git
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" Иконки
+" Plug 'ryanoasis/vim-devicons'
+" Раширение работы с git
+Plug 'airblade/vim-gitgutter'
+" Везуализация дерева undo
+Plug 'sjl/gundo.vim'
+" Выделяем в режиме визуализации и ищем по * и #
+Plug 'bronson/vim-visual-star-search'
+" мощный плагин по поиску и выделению
+Plug 'easymotion/vim-easymotion'
 
 " Tmux for running tests
 " Plug 'christoomey/vim-tmux-runner'
@@ -76,48 +97,67 @@ Plug 'preservim/vimux'
 " gS to split a one-liner into multiple lines
 " gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'otavioschwanck/neovim_ruby'
-
-Plug 'tpope/vim-sensible'
+" Много настроек для ruby было пока не понятно как использовать
+" Plug 'otavioschwanck/neovim_ruby'
+" Начальные настроки для новичков, как я понял... уберу пока
+" Plug 'tpope/vim-sensible'
+" Работа с Git
 Plug 'tpope/vim-fugitive'
-Plug 'terryma/vim-multiple-cursors'
+" Мульникурсор... куча настроек ... много разбираться
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
+" Дерево со списком методов, для больших файлов
 Plug 'liuchengxu/vista.vim'
+" Куча снипетов для разных языков в том числе для ruby, rails, slim
 Plug 'honza/vim-snippets'
+"Стартовая страница (с коровой) при загрузке vim
 Plug 'mhinz/vim-startify'
+" Запуск программ (типа проверка синтаксиса) асинхронно
 " Plug 'neomake/neomake'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'lxhillwind/leader-clipboard'
+" Отражение лишних пробелов
 Plug 'ntpeters/vim-better-whitespace'
-" Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+" Подсветка синтаксиса ip ssl-protocols и др.
 Plug 'chr4/nginx.vim'
+" Запуск тестов для разных языков
 Plug 'janko-m/vim-test'
+" Просмотр буфера объмена
 " Plug 'jlanzarotta/bufexplorer'
+" Bundle for vim. Use with Vandle
 Plug 'lepture/vim-jinja', { 'for': 'jinja' }
+" vimproc is a great asynchronous execution library for Vim. It is a fork of proc.vim by Yukihiro Nakadaira
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
-" The plugin provides mappings to easily delete, change and add such surroundings in pairs.
 Plug 'tpope/vim-surround'
+" Поддержка caddy-server (автоматизация процессов??)
 Plug 'isobit/vim-caddyfile'
 
-" Targets.vim comes with five kinds for text objects:
-" Pair text objects
-" Quote text objects
-" Separator text objects
-" Argument text objects
-" Tag text objects
+" Расширенная работа с текстом cin), I], A{
 Plug 'wellle/targets.vim'
+" Комментирование gcu gcgc - убрать текущий и смежные
 Plug 'tpope/vim-commentary'
+" Раширение работы с точкой (повтор)
+" surround.vim speeddating.vim(увеличение-уменьшение дат)
+" tpope/vim-unimpaired
 Plug 'tpope/vim-repeat'
+" [f f] file in folder, [<sp>, [e
+" >p >P <p =p
 Plug 'tpope/vim-unimpaired'
-Plug 'nanotech/jellybeans.vim'
+" Поиск по всем файлам и составление списка по которому можно прыгать
+" Редактирование результата поиска
 Plug 'dyng/ctrlsf.vim'
+"Строка состояния
 Plug 'vim-airline/vim-airline'
+" Работа с коммандной строкой :Edoc/read.rb
+" :A - альтернативные переходы (в rails плагине использоуется)
 Plug 'tpope/vim-projectionist'
+" HTML колмплитер
 Plug 'othree/html5.vim'
+" Подсветка синтаксиса pug
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+" Подсветка сингаксиса slim
 Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
 " Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 " Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
@@ -136,7 +176,6 @@ Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
 " Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 Plug 'tpope/vim-ragtag'
 
-" Plug 'eagletmt/ghcmod-vim'
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'neovimhaskell/haskell-vim'
 
@@ -157,7 +196,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-" Plug 'michaeljsmith/vim-indent-object'
+"выделение согласно отступов ai ii aI iI
+Plug 'michaeljsmith/vim-indent-object'
 
 " Clojure
 " Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
@@ -290,6 +330,8 @@ endif
 nmap j gj
 nmap k gk
 
+imap jk <ESC>
+
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
@@ -308,9 +350,16 @@ map <leader>vr :source $MYVIMRC<CR>
 
 """ Plugins Keymaps
 
-" nmap <C-m> :NERDTreeFind<CR>
-nmap <silent> <leader><leader> :NERDTreeToggle<CR>
-nmap <silent> <leader>m :NERDTreeFind<CR>
+" Plug 'AndrewRadev/splitjoin.vim'
+" gS to split a one-liner into multiple lines
+" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+nmap <Leader>gJ :SplitjoinJoin<cr>
+nmap <Leader>gS :SplitjoinSplit<cr>
+
+nmap <silent> <leader>nt :NERDTreeToggle<CR>
+nmap <silent> <leader>nf :NERDTreeFind<CR>
 
 nnoremap <leader>b :Buffers<CR>
 
@@ -347,7 +396,12 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 nmap <silent> <leader>fmc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <Leader>w :w<CR>
-" serch git files
+
+" Git
+nmap <Leader>gs :G <CR>
+nmap <Leader>gh :diffget //3<CR>
+nmap <Leader>gu :diffget //2<CR>
+
 nnoremap <Leader>o :GFiles .<CR>
 nnoremap <leader>fc :Commits<CR>
 nnoremap <leader>ff :Files<CR>
@@ -549,26 +603,26 @@ let g:ale_disable_lsp = 1
 let g:ale_fix_on_save = 0
 
 "" Errors
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '=-'
+let g:ale_sign_error = '∎'
+let g:ale_sign_warning = '∎'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 " let g:ale_set_highlights = 0
 
 "" Linting
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 0
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_ignore_lsp = 1
+" let g:ale_lint_on_text_changed = 0
+" let g:ale_lint_on_insert_leave = 0
+" let g:ale_lint_on_enter = 0
+" let g:ale_set_loclist = 1
+" let g:ale_set_quickfix = 0
+" let g:ale_ignore_lsp = 1
 
 let g:ale_ruby_rubocop_options = '-D'
 " let g:ale_ruby_rubocop_options = '-D -E --color'
-let g:ale_ruby_rubocop_auto_correct_all = 1
+" let g:ale_ruby_rubocop_auto_correct_all = 0
 
 let g:ale_linters = {
-      \ 'ruby': ['rubocop']
+      \ 'ruby': ['ruby', 'standard', 'rubocop']
       \ }
 
 let g:ale_fixers = {
@@ -590,4 +644,3 @@ let g:ale_fixers = {
 " nnoremap <Leader>as :ALESymbolSearch<CR>
 nnoremap <Leader>af :ALEFix<CR>
 nnoremap <Leader>al :ALELint<CR>
-
