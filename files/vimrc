@@ -599,7 +599,7 @@ nmap <leader>y :.w! /tmp/.vim/.vbuf<CR>
 nmap <leader>p :r /tmp/.vim/.vbuf<CR>
 
 " ALE
-let g:ale_disable_lsp = 1
+" let g:ale_disable_lsp = 1
 let g:ale_fix_on_save = 0
 
 "" Errors
@@ -617,23 +617,26 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 " let g:ale_set_quickfix = 0
 " let g:ale_ignore_lsp = 1
 
+" let g:ale_ruby_rubocop_executable = 'bundle'
 let g:ale_ruby_rubocop_options = '-D'
 " let g:ale_ruby_rubocop_options = '-D -E --color'
 " let g:ale_ruby_rubocop_auto_correct_all = 0
+" Не работает вставка frozen_string_literal: true
+let g:ale_ruby_rubocop_auto_correct_all = 1
 
 let g:ale_linters = {
-      \ 'ruby': ['ruby', 'standard', 'rubocop']
+      \ 'ruby': ['rubocop']
       \ }
 
 let g:ale_fixers = {
-      \ 'ruby': ['remove_trailing_lines', 'trim_whitespace', 'rubocop'],
-      \ 'css': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier'],
-      \ 'scss': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier'],
-      \ 'javascript': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier', 'eslint'],
-      \ 'typescript': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier', 'eslint'],
-      \ 'html': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier'],
-      \ 'erb': ['remove_trailing_lines', 'trim_whitespace', 'htmlbeautifier'],
-      \ 'eruby': ['remove_trailing_lines', 'trim_whitespace', 'prettier_standard', 'prettier'],
+      \ 'ruby': ['rubocop'],
+      \ 'css': ['prettier_standard', 'prettier'],
+      \ 'scss': ['prettier_standard', 'prettier'],
+      \ 'javascript': ['prettier_standard', 'prettier', 'eslint'],
+      \ 'typescript': ['prettier_standard', 'prettier', 'eslint'],
+      \ 'html': ['prettier_standard', 'prettier'],
+      \ 'erb': ['htmlbeautifier'],
+      \ 'eruby': ['prettier_standard', 'prettier'],
       \ '*': ['remove_trailing_lines', 'trim_whitespace']
       \ }
 
