@@ -1,3 +1,4 @@
+vim.cmd([[
 setglobal nocompatible
 setglobal pastetoggle=<F2>
 
@@ -41,8 +42,33 @@ Plug 'sheerun/vim-polyglot'
 autocmd VimEnter * ++nested colorscheme gruvbox-material
 " autocmd VimEnter * ++nested colorscheme gruvbox
 
-" (Vit)ality is a plugin that makes (V)im play nicely with (i)Term 2 and (t)mux.
-" Plug 'sjl/vitality.vim'
+Plug 'sjl/vitality.vim'
+
+" " FZF
+" if exists(':FZF')
+"   let g:fzf_colors = {}
+
+"   let g:fzf_colors.fg      = ['fg', 'GruvboxFg1']
+"   let g:fzf_colors.bg      = ['fg', 'GruvboxBg0']
+"   let g:fzf_colors.hl      = ['fg', 'GruvboxRed']
+"   let g:fzf_colors['fg+']  = ['fg', 'GruvboxGreen']
+"   let g:fzf_colors['bg+']  = ['fg', 'GruvboxBg1']
+"   let g:fzf_colors['hl+']  = ['fg', 'GruvboxRed']
+"   let g:fzf_colors.info    = ['fg', 'GruvboxOrange']
+"   let g:fzf_colors.border  = ['fg', 'GruvboxBg0']
+"   let g:fzf_colors.prompt  = ['fg', 'GruvboxAqua']
+"   let g:fzf_colors.pointer = ['fg', 'GruvboxOrange']
+"   let g:fzf_colors.marker  = ['fg', 'GruvboxYellow']
+"   let g:fzf_colors.spinner = ['fg', 'GruvboxGreen']
+"   let g:fzf_colors.header  = ['fg', 'GruvboxBlue']
+" endif
+
+" " GRUVBOX
+"     set bg=dark
+"     let g:gruvbox_contrast_dark='hard'
+"     let g:gruvbox_italic=1
+"     set termguicolors
+"     " colorscheme gruvbox
 
 " Dir Trees
 Plug 'preservim/nerdtree'
@@ -53,7 +79,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Раширение работы с git
 Plug 'airblade/vim-gitgutter'
 " Везуализация дерева undo
-" Plug 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim'
 " Выделяем в режиме визуализации и ищем по * и #
 Plug 'bronson/vim-visual-star-search'
 " мощный плагин по поиску и выделению
@@ -95,7 +121,7 @@ Plug 'junegunn/fzf.vim'
 " Отражение лишних пробелов
 Plug 'ntpeters/vim-better-whitespace'
 " Подсветка синтаксиса ip ssl-protocols и др.
-" Plug 'chr4/nginx.vim'
+Plug 'chr4/nginx.vim'
 " Запуск тестов для разных языков
 Plug 'janko-m/vim-test'
 " Просмотр буфера объмена
@@ -107,7 +133,7 @@ Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 
 Plug 'tpope/vim-surround'
 " Поддержка caddy-server (автоматизация процессов??)
-" Plug 'isobit/vim-caddyfile'
+Plug 'isobit/vim-caddyfile'
 
 " Расширенная работа с текстом cin), I], A{
 Plug 'wellle/targets.vim'
@@ -158,17 +184,17 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }
 " Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
 " Plug 'moll/vim-node'
-" Plug 'mattn/emmet-vim', { 'for': ['html'] }
+Plug 'mattn/emmet-vim', { 'for': 'html' }
 
 " Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-easytags'
 " Plug 'Valloric/MatchTagAlways'
 
-" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-" Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
-" Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 "выделение согласно отступов ai ii aI iI
@@ -181,14 +207,14 @@ Plug 'michaeljsmith/vim-indent-object'
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
 
-" Plug 'kovisoft/slimv', { 'for': ['clojure', 'scheme', 'racket'] }
-" Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
+Plug 'kovisoft/slimv', { 'for': ['clojure', 'scheme', 'racket'] }
+Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 " Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 " Plug 'henrik/vim-yaml-flattener'
 
-" Plug 'chrisbra/csv.vim', { 'for': 'csv' }
-" Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
@@ -220,9 +246,9 @@ let g:coc_global_extensions = [
 " Linting
 Plug 'dense-analysis/ale'
 
-" Plug 'nvim-lua/popup.nvim'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
@@ -310,7 +336,6 @@ nmap j gj
 nmap k gk
 
 imap jk <ESC>
-imap kj <ESC>
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
@@ -318,6 +343,8 @@ map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
@@ -618,8 +645,6 @@ let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace']
       \ }
 
-" let g:ale_javascript_eslint_options = '--fix'
-
 " nmap <silent> [a <Plug>(ale_previous_wrap)
 " nmap <silent> ]a <Plug>(ale_next_wrap)
 
@@ -627,3 +652,4 @@ let g:ale_fixers = {
 " nnoremap <Leader>as :ALESymbolSearch<CR>
 nnoremap <Leader>af :ALEFix<CR>
 nnoremap <Leader>al :ALELint<CR>
+]])
